@@ -277,7 +277,7 @@ public class SampleXmlUtil {
     private static final String[] DNS2 = new String[]{"com", "org", "com", "gov", "org", "com", "org", "com", "edu"};
 
     private int pick(int n) {
-        return _picker.nextInt(n);
+        return 0;
     }
 
     private String pick(String[] a) {

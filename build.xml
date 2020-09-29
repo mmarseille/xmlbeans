@@ -30,7 +30,7 @@
     <property environment="ENV"/>
 
     <condition property="isJava8">
-        <javaversion exactly="1.8"/>
+        <istrue value="true"/>
     </condition>
 
     <macrodef name="dependency">
@@ -270,7 +270,7 @@
                 </filterchain>
             </copy>
 
-            <javac release="8"
+            <javac
                    destdir="@{rscDir}"
                    debug="${compile.debug}"
                    debuglevel="lines,vars,source"
@@ -331,7 +331,7 @@
 
         <mkdir dir="build/classes"/>
         <mkdir dir="build/generated-sources"/>
-        <javac release="8"
+        <javac
                destdir="build/classes"
                debug="${compile.debug}"
                debuglevel="lines,vars,source"
@@ -378,7 +378,7 @@
         <!-- delete old schema classes -->
         <delete dir="build/classes/org/apache/xmlbeans/impl/xb"/>
 
-        <javac release="8"
+        <javac 
                destdir="build/classes"
                debug="${compile.debug}"
                debuglevel="lines,vars,source"
@@ -388,20 +388,7 @@
             <src refid="sources"/>
             <classpath path="${saxon.jar}"/>
         </javac>
-
-        <javac release="9"
-               srcdir="${basedir}/src/main/multimodule/java9"
-               destdir="${basedir}/src/main/multimodule/java9"
-               includeantruntime="false"
-               debug="${compile.debug}"
-               debuglevel="lines,vars,source"
-               fork="true"
-               unless:true="${isJava8}">
-            <compilerarg line="--patch-module org.apache.xmlbeans=${basedir}/build/classes"/>
-            <modulepath>
-                <pathelement path="lib/main"/>
-            </modulepath>
-        </javac>
+        
     </target>
 
     <!-- Run this target before you open the project in an IDE. -->
@@ -499,7 +486,7 @@
 
 
     <target name="test-compile" depends="process-test-resources" description="Compile test sources and resources">
-        <javac release="8"
+        <javac 
                destdir="build/test-classes"
                debug="${compile.debug}"
                debuglevel="lines,vars,source"
@@ -519,7 +506,7 @@
         </javac>
 
         <mkdir dir="build/test-syscache/1/classes"/>
-        <javac release="8"
+        <javac 
                destdir="build/test-syscache/1/classes"
                debug="${compile.debug}"
                debuglevel="lines,vars,source"
@@ -531,7 +518,7 @@
             <classpath location="build/test-syscache/1/generated-resources"/>
         </javac>
         <mkdir dir="build/test-syscache/2/classes"/>
-        <javac release="8"
+        <javac 
                destdir="build/test-syscache/2/classes"
                debug="${compile.debug}"
                debuglevel="lines,vars,source"
